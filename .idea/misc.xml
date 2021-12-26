@@ -6,7 +6,9 @@
         <entry key="..\:/MyWork/Flutter/NYTimeAplpication/app/src/main/res/drawable/border_white_10_corner.xml" value="0.2203125" />
         <entry key="..\:/MyWork/Flutter/NYTimeAplpication/app/src/main/res/drawable/ic_baseline_bookmark.xml" value="0.2203125" />
         <entry key="..\:/MyWork/Flutter/NYTimeAplpication/app/src/main/res/drawable/ic_bookmarks.xml" value="0.2203125" />
+        <entry key="..\:/MyWork/Flutter/NYTimeAplpication/app/src/main/res/drawable/ic_day.xml" value="0.2203125" />
         <entry key="..\:/MyWork/Flutter/NYTimeAplpication/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2203125" />
+        <entry key="..\:/MyWork/Flutter/NYTimeAplpication/app/src/main/res/drawable/ic_search.xml" value="0.2203125" />
         <entry key="..\:/MyWork/Flutter/NYTimeAplpication/app/src/main/res/layout/activity_base.xml" value="0.20416666666666666" />
         <entry key="..\:/MyWork/Flutter/NYTimeAplpication/app/src/main/res/layout/activity_home.xml" value="0.16" />
         <entry key="..\:/MyWork/Flutter/NYTimeAplpication/app/src/main/res/layout/activity_main.xml" value="0.19010416666666666" />
@@ -16,6 +18,8 @@
         <entry key="..\:/MyWork/Flutter/NYTimeAplpication/app/src/main/res/layout/fragment_articles_details.xml" value="0.20416666666666666" />
         <entry key="..\:/MyWork/Flutter/NYTimeAplpication/app/src/main/res/layout/item_post_article.xml" value="0.20416666666666666" />
         <entry key="..\:/MyWork/Flutter/NYTimeAplpication/app/src/main/res/menu/menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/MyWork/Flutter/NYTimeAplpication/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2203125" />
+        <entry key="..\:/MyWork/Flutter/NYTimeAplpication/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2203125" />
       </map>
     </option>
   </component>

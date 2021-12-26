@@ -24,10 +24,6 @@
 
     </style>
 
-    <style name="ContentLoadingProgress">
-        <item name="colorAccent">@color/purple_700</item>
-    </style>
-
     <!-- LoadingDialog theme -->
 
 </resources>
