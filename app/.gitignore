@@ -184,6 +184,8 @@ Thumbs.db
 .cproject
 .settings/
 
+jacoco.exec
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 

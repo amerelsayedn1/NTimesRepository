@@ -4,10 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.task.nytimeaplpication.core.NetworkHandler
 import com.task.nytimeaplpication.domain.data.model.BaseModel
 import com.task.nytimeaplpication.domain.data.model.news.NewsItem
 import com.task.nytimeaplpication.networking.DataState
-import com.task.nytimeaplpication.networking.repository.ArticlesRepositoryImpl
+import com.task.nytimeaplpication.networking.repository.ArticlesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,7 +23,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ArticleViewModel @Inject constructor(
-    private val repository: ArticlesRepositoryImpl,
+    private val networkHandler: NetworkHandler,
+    private val repository: ArticlesRepository,
 ) : ViewModel() {
 
     private val _articles = MutableLiveData<DataState<BaseModel<ArrayList<NewsItem>>>>()
@@ -36,12 +38,16 @@ class ArticleViewModel @Inject constructor(
     ) {
         _articles.value = DataState.Loading
 
-        viewModelScope.launch(Dispatchers.IO) {
-            val response = repository.getMostViewArticles(section, period)
+        when (networkHandler.isNetworkAvailable()) {
+            true -> viewModelScope.launch(Dispatchers.IO) {
+                val response = repository.getMostViewArticles(section, period)
 
-            withContext(Dispatchers.Main) {
-                _articles.postValue(response)
+                withContext(Dispatchers.Main) {
+                    _articles.postValue(response)
+                }
             }
+            false -> _articles.value = DataState.Error(message = "Check your Network Connection")
         }
+
     }
 }

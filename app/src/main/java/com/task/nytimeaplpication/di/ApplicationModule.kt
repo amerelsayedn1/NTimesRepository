@@ -3,6 +3,7 @@ package com.task.nytimeaplpication.di
 
 import com.task.nytimeaplpication.BuildConfig
 import com.task.nytimeaplpication.networking.remote.EndPointService
+import com.task.nytimeaplpication.networking.repository.ArticlesRepository
 import com.task.nytimeaplpication.networking.repository.ArticlesRepositoryImpl
 import dagger.Module
 import dagger.Provides
@@ -45,9 +46,10 @@ class ApplicationModule {
 
     @Singleton
     @Provides
-    fun provideRemoteDataSource(endPointService: EndPointService) =
+    fun provideRemoteDataSource(
+        endPointService: EndPointService
+    ): ArticlesRepository =
         ArticlesRepositoryImpl(endPointService)
-
 
 
 }

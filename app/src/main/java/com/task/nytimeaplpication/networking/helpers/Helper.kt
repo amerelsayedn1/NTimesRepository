@@ -1,9 +1,9 @@
 package com.task.nytimeaplpication.networking.helpers
 
-import com.task.nytimeaplpication.domain.ErrorResponse
 import com.task.nytimeaplpication.networking.DataState
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.task.nytimeaplpication.domain.data.model.error.ErrorResponse
 import retrofit2.Response
 
 object Helper {
@@ -17,19 +17,18 @@ object Helper {
             }
 
             val type = object : TypeToken<ErrorResponse>() {}.type
-            val errorResponse: ErrorResponse =
-                Gson().fromJson(response.errorBody()!!.charStream(), type)
+            val errorResponse: ErrorResponse = Gson().fromJson(response.errorBody()!!.charStream(), type)
 
             return error(
-                message = errorResponse.message,
-                code = errorResponse.code.toInt()
+                message = errorResponse.fault.faultstring,
+                code = errorResponse.fault.detail.errorcode
             )
         } catch (e: Exception) {
             return error(message = e.message ?: e.toString())
         }
     }
 
-    private fun <T> error(message: String, code: Int = 0): DataState<T> {
+    private fun <T> error(message: String, code: String = ""): DataState<T> {
         return DataState.Error(message = message,code=code)
     }
 

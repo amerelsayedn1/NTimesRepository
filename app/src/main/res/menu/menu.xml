@@ -7,7 +7,7 @@
         android:id="@+id/action_night_mode"
         android:checkable="true"
         android:icon="@drawable/ic_search"
-        android:title="@string/night_mode"
+        android:title="@string/search"
         app:showAsAction="ifRoom" />
 
     <item

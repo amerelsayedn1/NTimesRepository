@@ -1,15 +1,14 @@
 package com.task.nytimeaplpication.presentation.articles
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.task.nytimeaplpication.core.NetworkHandler
 import com.task.nytimeaplpication.domain.data.model.BaseModel
 import com.task.nytimeaplpication.domain.data.model.news.Media
 import com.task.nytimeaplpication.domain.data.model.news.MediaMetadata
 import com.task.nytimeaplpication.domain.data.model.news.NewsItem
 import com.task.nytimeaplpication.networking.DataState
-import com.task.nytimeaplpication.networking.repository.ArticlesRepositoryImpl
-import io.mockk.coEvery
-import io.mockk.coVerify
-import io.mockk.mockk
+import com.task.nytimeaplpication.networking.repository.ArticlesRepository
+import io.mockk.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.ObsoleteCoroutinesApi
@@ -28,9 +27,10 @@ import org.junit.rules.TestRule
 
 class ArticleViewModelTest {
 
-    private var articleRepo: ArticlesRepositoryImpl = mockk()
+    private var articleRepo: ArticlesRepository = mockk()
+    private var networkHandler: NetworkHandler = mockk()
 
-    private var articleViewModel = ArticleViewModel(articleRepo)
+    private var articleViewModel = ArticleViewModel(networkHandler, articleRepo)
 
     @get:Rule
     val rule: TestRule = InstantTaskExecutorRule()
@@ -52,6 +52,8 @@ class ArticleViewModelTest {
         Dispatchers.resetMain() // reset the main dispatcher to the original Main dispatcher
         mainThreadSurrogate.close()
     }
+
+
 
 
     @ExperimentalCoroutinesApi
@@ -110,6 +112,8 @@ class ArticleViewModelTest {
                 num_results = 20,
                 data = arrayListOf(mockNewsItem)
             )
+
+            every{networkHandler.isNetworkAvailable()} returns true
 
             //for suspend functions
             coEvery { articleRepo.getMostViewArticles("all-sections", "7.json") } answers {
