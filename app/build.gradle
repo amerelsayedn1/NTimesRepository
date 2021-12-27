@@ -53,6 +53,8 @@ android {
     buildTypes {
         debug {
             testCoverageEnabled true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         release {
             minifyEnabled false
@@ -95,9 +97,6 @@ dependencies {
 
     //Image Loading
     implementation("io.coil-kt:coil:1.4.0")
-
-    // Google play services
-    implementation "com.google.android.play:core:1.10.2"
 
     //Lifecycle
     def lifecycle_version = "2.4.0"
